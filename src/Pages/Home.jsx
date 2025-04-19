@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 // pages/Home.jsx
 import React, { useEffect, useState } from "react";
 import MovieSlider from "../components/MovieSlider";
+import Viewvers from "../Components/Viewvers";
+import Recommends from "../Components/Recommends";
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -12,17 +14,26 @@ const Home = () => {
   useEffect(() => {
     // Dummy data for now, you can fetch from API later
     const demoMovies = [
-      { title: "Watch Now",description: "Action, Sci-Fi, Fantasy", imageUrl: "/poster1.jpg" },
-      { title: "Watch Now", description: "Action, Sci-Fi, Fantasy",imageUrl: "/poster2.jpg" },
-      { title: "Watch Now",description: "Action, Sci-Fi, Fantasy", imageUrl: "/poster3.jpg" },
+      { title: "Watch Now",description: "Action | Sci-Fi | Fantasy", imageUrl: "/images/P1.jpg" },
+      { title: "Watch Now", description: "Action | Sci-Fi | Fantasy",imageUrl: "/images/p2.jpg" },
+      { title: "Watch Now",description: "Action | Sci-Fi | Fantasy", imageUrl: "/images/p2.jpg" },
     ];
     setMovies(demoMovies);
   }, []);
 
+
   return (
+    <>
     <div>
       <MovieSlider movies={movies} />
+      <Viewvers></Viewvers>
+      <Recommends></Recommends>
     </div>
+
+    
+
+
+</>
   );
 };
 

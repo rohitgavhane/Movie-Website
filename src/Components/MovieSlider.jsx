@@ -23,6 +23,7 @@ const MovieSlider = ({ movies }) => {
       
 
   return (
+    <>
     <div className="slider-container">
       <Slider {...settings}>
         {movies.map((movie, index) => (
@@ -43,6 +44,9 @@ const MovieSlider = ({ movies }) => {
         ))}
       </Slider>
     </div>
+
+
+    </>
   );
 };
 

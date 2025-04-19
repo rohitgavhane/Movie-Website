@@ -7,9 +7,9 @@ import { FaUserCircle } from "react-icons/fa";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid ps-5" style={{ marginLeft: '80px' }}>
-        <NavLink className="navbar-brand me-5" style={{ marginRight: '400px' }} to="/home">
+    <nav className="navbar navbar-expand-lg " style={{backgroundColor:'#0F1014'}}>
+      <div className="container-fluid ps-5" style={{ marginLeft: '80px', backgroundColor:'#0F1014'}}>
+        <NavLink className="navbar-brand me-5" style={{ marginRight: '400px', color:'blue', borderBottom:'2px white'}} to="/home">
           Navbar
         </NavLink>
 
