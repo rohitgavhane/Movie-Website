@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function Recommends() {
+function Thriller() {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/recommendation/getrecommendedMovies')
+    axios.get('http://localhost:3000/recommendation/thrillerMovies')
       .then((res) => {
         setMovies(res.data);
       })
@@ -23,14 +23,14 @@ function Recommends() {
 
   return (
     <>
-      <h3 style={{  paddingLeft: "120px", paddingRight: "120px", marginTop: '50px' }}>Recommended Movies</h3>
+      <h3 style={{ paddingLeft: "120px", paddingRight: "120px", marginTop: '50px' }}>Thriller Movies</h3>
       <Container>
         {movies.map((movie, index) => (
           <Wrap key={index}>
             <img src={movie.poster_url} alt={movie.title} />
-            <Info className="info">
+            <Info>
               <h3>{movie.title}</h3>
-              <p>{movie.overview.slice(0, 100)}...</p>
+              <p>{movie.overview?.slice(0, 100)}...</p>
               <button onClick={ClickHandler}>Watch Now</button>
             </Info>
           </Wrap>
@@ -73,60 +73,58 @@ const Wrap = styled.div`
     transition: 0.3s;
   }
 
-  .info {
-    opacity: 0;
-    position: absolute;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    width: 100%;
-    padding: 20px;
-    color: white;
-    transition: opacity 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    z-index: 2;
-
-    h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-
-    button {
-      padding: 8px 12px;
-      background: #1f80e0;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #0f6bc7;
-    }
-  }
-
+  ${'' /* Show info on hover */}
   &:hover {
     transform: scale(1.1);
     z-index: 3;
-   
+
     img {
       filter: blur(0.5px);
-      opacity:2;
     }
 
-    .info {
+    div {
       opacity: 1;
     }
   }
 `;
 
-const Info = styled.div``;
+const Info = styled.div`
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: opacity 0.3s ease;
+  z-index: 2;
 
-export default Recommends;
+  h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 8px 12px;
+    background: #1f80e0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0f6bc7;
+  }
+`;
+
+export default Thriller;

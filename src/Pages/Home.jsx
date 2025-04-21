@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import MovieSlider from "../components/MovieSlider";
 import Viewvers from "../Components/Viewvers";
 import Recommends from "../Components/Recommends";
+import Thriller from "../Components/Thriller";
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -28,6 +29,7 @@ const Home = () => {
       <MovieSlider movies={movies} />
       <Viewvers></Viewvers>
       <Recommends></Recommends>
+      <Thriller></Thriller>
     </div>
 
     

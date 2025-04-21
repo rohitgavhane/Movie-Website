@@ -3,9 +3,9 @@ import styled from 'styled-components' // ✅ correct import
 
 function Viewvers() {
     return (
-        
+
         <Container>
-    
+
             <Wrap>
                 <img src='/images/viewers-disney.png' alt='' />
                 <video autoPlay loop playsInline muted>
@@ -27,14 +27,14 @@ function Viewvers() {
                 </video>
             </Wrap>
             <Wrap>
-            
+
                 <img src='/images/viewers-national.png' alt='' />
                 <video autoPlay loop playsInline muted>
-                <source src="/videos/1564676296-national-geographic.mp4" type="video/mp4" />
+                    <source src="/videos/1564676296-national-geographic.mp4" type="video/mp4" />
                 </video>
             </Wrap>
             <Wrap>
-            <img src='/images/viewers-starwars.png' alt='' />
+                <img src='/images/viewers-starwars.png' alt='' />
                 <video autoPlay loop playsInline muted>
                     <source src="/videos/1608229455-star-wars.mp4 " type="video/mp4" />
                 </video>
@@ -45,12 +45,11 @@ function Viewvers() {
 
 const Container = styled.div`
   margin-top: 30px;
-  padding: 30px 0 26px;
+padding: 30px 120px 26px;
   display: grid;
   grid-gap: 25px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-   padding-left: 60px;
-  padding-right: 60px;
+
 `;
 
 const Wrap = styled.div`
