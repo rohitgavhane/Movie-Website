@@ -1,21 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'; // ✅ Step 1
+import { useParams } from 'react-router-dom';
+import ReviewBtn from '../Components/ReviewBtn';
+import ReviewModal from '../Components/ReviewModel';
+
+
+
 
 function ClickedMovie() {
   const [movie, setMovie] = useState({});
-  const { id } = useParams(); // ✅ Step 2
+  const { id } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reviews, setReviews] = useState([]);
 
+  // Fetch movie
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/getmovie/${id}`) // ✅ Step 3
+      .get(`http://localhost:3000/getmovie/${id}`)
       .then((res) => {
         setMovie(res.data);
       })
       .catch((error) => {
         console.error('Error fetching movie:', error);
       });
+  }, [id]);
+
+  // Fetch reviews
+  const fetchReviews = () => {
+    axios
+      .get(`http://localhost:3000/reviews/get/${id}`)
+      .then((res) => {
+        setReviews(res.data);
+      })
+      .catch((err) => {
+        console.error('Error fetching reviews:', err);
+      });
+  };
+
+  useEffect(() => {
+    if (id) fetchReviews();
   }, [id]);
 
   return (
@@ -28,6 +52,29 @@ function ClickedMovie() {
           <MovieDetails>
             <h3>{movie.title}</h3>
             <p>{movie.overview}</p>
+            <p>Action | Sci-Fi | Romance</p>
+            <button className="movie-button">Watch Now</button>
+
+            <ReviewBtn onClick={() => setIsModalOpen(true)} />
+            <ReviewModal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              movieId={id}
+              onReviewAdded={fetchReviews} // Refresh reviews after modal submit
+            />
+
+            <h4 style={{ marginTop: '30px' }}>User Reviews:</h4>
+            <ReviewList>
+              {reviews.length > 0 ? (
+                reviews.map((r) => (
+                  <ReviewItem key={r._id}>
+                    <p>{r.text}</p>
+                  </ReviewItem>
+                ))
+              ) : (
+                <p style={{ color: '#aaa' }}>No reviews yet.</p>
+              )}
+            </ReviewList>
           </MovieDetails>
         </Content>
       ) : (
@@ -35,9 +82,8 @@ function ClickedMovie() {
       )}
     </Container>
   );
-  
-  
 }
+
 const Container = styled.div`
   padding: 50px 80px;
   background-color: #0d0d0d;
@@ -62,7 +108,7 @@ const ImageWrapper = styled.div`
     width: 100%;
     max-width: 350px;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease;
   }
 
@@ -73,22 +119,38 @@ const ImageWrapper = styled.div`
 
 const MovieDetails = styled.div`
   flex: 2;
-  padding-top: 280px;
-  padding-right:300px;
+  padding-top: 100px;
+  padding-right: 300px;
 
   h3 {
     font-size: 48px;
     color: #1f80e0;
     margin-bottom: 15px;
     text-align: left;
+    font-family: Roboto, sans-serif;
   }
 
   p {
-    font-size: 18px;
+    font-size: 16.5px;
     line-height: 1.6;
     color: #ccd5ae;
     text-align: justify;
+    font-family: "Bungee Spice", sans-serif;
+    padding-right: 120px;
   }
+`;
+
+const ReviewList = styled.div`
+  margin-top: 20px;
+  padding-right: 250px;
+`;
+
+const ReviewItem = styled.div`
+  background-color: #1f1f1f;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid #1f80e0;
 `;
 
 const LoadingMessage = styled.p`
@@ -109,6 +171,5 @@ const LoadingMessage = styled.p`
     }
   }
 `;
-
 
 export default ClickedMovie;

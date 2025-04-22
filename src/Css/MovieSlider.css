@@ -80,10 +80,11 @@
 /* watvh now button css */
 
 .movie-button {
-    background-color: #6a0dad;
-    color: white;
+  background: #7000bf;
+background: linear-gradient(90deg, rgb(102, 2, 174) 28%, rgb(210, 5, 210) 100%);
     padding: 10px 80px;
     border: none;
+    color: #fff;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
@@ -92,5 +93,6 @@
   }
 
   .movie-button:hover {
-    background-color: #210075;
+    background: #763beb;
+    
   }

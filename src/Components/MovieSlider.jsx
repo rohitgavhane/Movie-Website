@@ -44,8 +44,10 @@ const MovieSlider = ({ movies }) => {
         ))}
       </Slider>
     </div>
+    
+    <div className="section">
 
-
+    </div>
     </>
   );
 };

@@ -24,7 +24,6 @@ const FooterWrapper = styled.footer`
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
   color: #fff;
   padding: 40px 20px;
-  margin-top: 100px;
   box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
 `;
 
