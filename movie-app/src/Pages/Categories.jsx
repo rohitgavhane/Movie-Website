@@ -6,10 +6,11 @@ import { motion } from 'framer-motion';
 function Categories() {
   const [news, setNews] = useState([]);
 
+
   useEffect(() => {
     axios
       .get(
-        'https://newsdata.io/api/1/news?apikey=pub_82677d9c908707d2810dc6e663323e839f397&q=movie&language=en&category=entertainment'
+        'https://newsdata.io/api/1/news?apikey=pub_82677d9c908707d2810dc6e663323e839f397&q=movie&language=en&category=entertainment' 
 
       )
       .then((res) => {
@@ -105,4 +106,5 @@ const Image = styled.img`
   height: 180px;
   object-fit: cover;
   border-radius: 10px;
+ 
 `;
