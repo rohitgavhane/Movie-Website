@@ -17,7 +17,8 @@ const Home = () => {
     const demoMovies = [
       { title: "Watch Now",description: "Action | Sci-Fi | Fantasy", imageUrl: "/images/P1.jpg" },
       { title: "Watch Now", description: "Action | Sci-Fi | Fantasy",imageUrl: "/images/p2.jpg" },
-      { title: "Watch Now",description: "Action | Sci-Fi | Fantasy", imageUrl: "/images/p3.jpg" },
+      { title: "Watch Now",description: "Action | Sci-Fi | Fantasy", imageUrl: "/images/p2.jpg" },
+
     ];
     setMovies(demoMovies);
   }, []);
