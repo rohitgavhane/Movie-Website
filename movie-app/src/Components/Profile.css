@@ -1,0 +1,39 @@
+.profile-container {
+    background-color: #121212;
+    color: white;
+    padding: 80px 40px;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  .profile-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #60a5fa; /* blue-400 */
+    margin-bottom: 40px;
+  }
+  
+  .profile-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  
+  .profile-subtitle {
+    font-size: 24px;
+    color: #f472b6; /* pink-400 */
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  
