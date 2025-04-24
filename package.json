@@ -3,13 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "./",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-      "homepage": "./",
-
+    "preview": "vite preview"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.2",
