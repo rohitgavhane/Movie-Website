@@ -10,7 +10,7 @@ function ReviewModal({ isOpen, onClose, movieId, onReviewAdded }) {
     if (!review.trim()) return;
 
     try {
-      await fetch('http://localhost:3000/reviews/add', {
+      await fetch('https://moviewebsite2.onrender.com/reviews/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ movieId, text: review, rating }), // Include rating in the request

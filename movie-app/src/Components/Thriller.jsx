@@ -8,7 +8,7 @@ function Thriller() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/recommendation/thrillerMovies')
+    axios.get('https://moviewebsite2.onrender.com/recommendation/thrillerMovies')
       .then((res) => {
         setMovies(res.data);
       })

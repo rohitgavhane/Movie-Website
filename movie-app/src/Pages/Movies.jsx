@@ -12,7 +12,7 @@ function Movies() {
 
   const fetchMovies = async (page, search = '') => {
     try {
-      const res = await axios.get(`http://localhost:3000/getallMovies?page=${page}&search=${search}`);
+      const res = await axios.get(`https://moviewebsite2.onrender.com/getallMovies?page=${page}&search=${search}`);
       setMovies(res.data.movies);
       setCurrentPage(res.data.currentPage);
       setTotalPages(res.data.totalPages);

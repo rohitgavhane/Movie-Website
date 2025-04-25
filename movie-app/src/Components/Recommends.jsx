@@ -14,14 +14,14 @@ function Recommends() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/recommendation/getrecommendedMovies/')
+      .get('https://moviewebsite2.onrender.com/recommendation/getrecommendedMovies/')
       .then((res) => setMovies(res.data))
       .catch((error) => console.error('Error fetching recommended movies:', error));
   }, []);
 
   const fetchReviews = async (movieId) => {
     try {
-      const res = await axios.get(`http://localhost:3000/reviews/${movieId}`);
+      const res = await axios.get(`https://moviewebsite2.onrender.com/reviews/${movieId}`);
       setReviews(res.data);
     } catch (err) {
       console.error('Error fetching reviews:', err);
@@ -36,7 +36,7 @@ function Recommends() {
 
   const handleDeleteReview = async (reviewId) => {
     try {
-      await axios.delete(`http://localhost:3000/reviews/delete/${reviewId}`);
+      await axios.delete(`https://moviewebsite2.onrender.com/reviews/delete/${reviewId}`);
       fetchReviews(selectedMovieId); // Refresh reviews
     } catch (err) {
       console.error('Error deleting review:', err);

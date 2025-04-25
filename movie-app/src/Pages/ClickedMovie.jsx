@@ -18,15 +18,15 @@ function ClickedMovie() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/getmovie/${id}`);
+        const res = await axios.get(`https://moviewebsite2.onrender.com/getmovie/${id}`);
         setMovie(res.data);
       } catch (err1) {
         try {
-          const res = await axios.get(`http://localhost:3000/recommendation/getmovie/${id}`);
+          const res = await axios.get(`https://moviewebsite2.onrender.com/recommendation/getmovie/${id}`);
           setMovie(res.data);
         } catch (err2) {
           try {
-            const res = await axios.get(`http://localhost:3000/thriller/getmoviethirller/${id}`);
+            const res = await axios.get(`https://moviewebsite2.onrender.com/thriller/getmoviethirller/${id}`);
             setMovie(res.data);
           } catch (err3) {
             console.error('Movie not found in any collection.');
@@ -42,7 +42,7 @@ function ClickedMovie() {
   // Fetch reviews
   const fetchReviews = () => {
     axios
-      .get(`http://localhost:3000/reviews/get/${id}`)
+      .get(`https://moviewebsite2.onrender.com/reviews/get/${id}`)
       .then((res) => {
         setReviews(res.data);
       })
@@ -58,7 +58,7 @@ function ClickedMovie() {
 
   const handleDeleteReview = async (reviewId) => {
     try {
-      await axios.delete(`http://localhost:3000/reviews/delete/${reviewId}`);
+      await axios.delete(`https://moviewebsite2.onrender.com/reviews/delete/${reviewId}`);
       fetchReviews(); // Refresh reviews after deletion
     } catch (err) {
       console.error('Error deleting review:', err);
