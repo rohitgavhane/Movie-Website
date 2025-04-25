@@ -26,6 +26,16 @@ const MovieRecommended = new mongoose.Schema({
  }
 });
 
-const RecommendedMovies = mongoose.model("RecommendedMovies", MovieRecommended); // ✅ Correct model name
+// const RecommendedMovies = mongoose.model("RecommendedMovies", MovieRecommended); // ✅ Correct model name
 
-module.exports = RecommendedMovies;
+// module.exports = RecommendedMovies;
+
+
+// ✅ Explicitly define collection name and export
+const RecommendedMovies = mongoose.model(
+    "RecommendedMovie", // just a model name, doesn't matter
+    MovieRecommended,
+    "recommendedmovies" // ✅ MUST match your MongoDB collection exactly
+  );
+  
+  module.exports = RecommendedMovies;
