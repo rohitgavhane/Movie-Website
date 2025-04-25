@@ -4,8 +4,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node app.js",
-  "build": "echo 'Nothing to build for backend'"
+    "start": "node app.js",
+    "build": "echo 'Nothing to build for backend'"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,8 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongoose": "^8.13.3"
+  },
+  "devDependencies": {
+    "vite": "^6.3.3"
   }
 }
