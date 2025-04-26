@@ -27,12 +27,12 @@ function Movies() {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // reset to page 1 when search changes
+    setCurrentPage(1);
   };
 
   return (
     <>
-          <h2 style={{ marginTop: '50px', textAlign: 'center' }}>Movies</h2>
+      <h2 style={{ marginTop: '50px', textAlign: 'center' }}>Movies</h2>
 
       <SearchBarWrapper>
         <SearchInput
@@ -43,14 +43,13 @@ function Movies() {
         />
       </SearchBarWrapper>
 
-
       <Container>
         {movies.map((movie, index) => (
           <Wrap key={index}>
             <img src={movie.poster_url} alt={movie.title} />
-            <Info className="info">
+            <Info>
               <h3>{movie.title}</h3>
-              <p>{movie.overview.slice(0, 100)}...</p>
+              <p>{movie.overview?.slice(0, 100)}...</p>
               <button onClick={() => navigate(`/movie/${movie._id}`)}>Watch Now</button>
             </Info>
           </Wrap>
@@ -77,14 +76,15 @@ const SearchInput = styled.input`
   padding: 12px 20px;
   border-radius: 25px;
   border: 3px solid #2C2C2C;
-  color:white;
+  background-color: black;
+  color: white;
   outline: none;
   font-size: 16px;
   transition: 0.3s all ease;
-background-color: black;
+
   &:focus {
     border-color: #0f6bc7;
-    box-shadow: 0 0 5px rgba(31, 128, 224, 0.5);
+    box-shadow: 0 0 8px rgba(31, 128, 224, 0.8);
   }
 
   @media (max-width: 768px) {
@@ -94,7 +94,7 @@ background-color: black;
 
 const Container = styled.div`
   margin-top: 30px;
-  padding: 30px 120px 26px;
+  padding: 30px 120px 180px;
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(5, 1fr);
@@ -104,6 +104,10 @@ const Container = styled.div`
   }
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 30px 20px 100px;
   }
 `;
 
@@ -122,59 +126,61 @@ const Wrap = styled.div`
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
-    transition: 0.3s;
-  }
-
-  .info {
-    opacity: 0;
-    position: absolute;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    width: 100%;
-    padding: 20px;
-    color: white;
-    transition: opacity 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    z-index: 2;
-
-    h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-
-    button {
-      padding: 8px 12px;
-      background: #1f80e0;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #0f6bc7;
-      }
-    }
+    transition: 0.4s;
   }
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.08);
     z-index: 3;
 
     img {
-      filter: blur(0.5px);
-      opacity: 2;
+      filter: brightness(0.7);
+      transform: scale(1.05);
     }
 
-    .info {
+    div {
       opacity: 1;
+    }
+  }
+`;
+
+const Info = styled.div`
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  button {
+    padding: 8px 14px;
+    background: linear-gradient(135deg, #1f80e0, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, #0f6bc7, #5e35b1);
     }
   }
 `;
@@ -182,25 +188,37 @@ const Wrap = styled.div`
 const Pagination = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 100px;
-  margin-bottom: 80px;
+  align-items: center;
+  margin-top: 80px;
+  margin-bottom: 60px;
   gap: 20px;
 
   button {
-    padding: 8px 30px;
+    padding: 10px 25px;
     border: none;
-    background: #AA60C8;
+    background: linear-gradient(135deg, #aa60c8, #3a8dff);
     color: white;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, #8a44b3, #2c74e8);
+    }
 
     &:disabled {
       background: gray;
       cursor: not-allowed;
     }
   }
-`;
 
-const Info = styled.div``;
+  span {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ddd;
+  }
+`;
 
 export default Movies;

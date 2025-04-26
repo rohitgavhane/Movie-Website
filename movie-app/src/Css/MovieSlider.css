@@ -20,15 +20,34 @@
   
   .slider-image {
     width: 100%;
-
-    max-height: 200vh;
-    object-fit: contain;
+    height: 80vh; /* Force same height */
+    object-fit: cover; /* Fill the box and crop if needed */
+    border-radius: 8px;
     transition: transform 0.5s ease;
+    aspect-ratio: 16 / 9;
+
   }
+  
   .slider-image:hover {
   transform: scale(1.001);
   border: 2px solid rgba(255, 255, 255, 0.8); /* White border with some transparency */
   border-radius: 8px; /* Optional: smooth corners */
+}
+@media (max-width: 768px) {
+  .slider-container {
+    margin: 20px auto;
+    padding: 0;
+  }
+
+  .slider-image {
+    aspect-ratio: 4 / 3; /* Slightly taller for mobile screens */
+  }
+
+  .overlay {
+    max-width: 90%;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
 }
 
  
@@ -58,7 +77,7 @@
 
 .slick-prev:hover,
 .slick-next:hover {
-  background-color: rgba(40, 1, 56, 0.6);
+  background-color: rgba(31, 0, 43, 0.6);
 }
 
 /* Icon inside the arrow */
@@ -66,10 +85,11 @@
 .slick-next:before {
   color: rgb(106, 106, 106);
   font-size: 24px;
-  opacity: 1;
+  opacity: 0.2;
 }
 
 /* Position tweaks (optional) */
+
 .slick-prev {
   left: 15px;
 }
@@ -78,21 +98,38 @@
 }
 
 /* watvh now button css */
-
 .movie-button {
-  background: #7000bf;
-background: linear-gradient(90deg, rgb(102, 2, 174) 28%, rgb(210, 5, 210) 100%);
-    padding: 10px 80px;
-    border: none;
-    color: #fff;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 1rem;
-  }
+  background: linear-gradient(90deg, rgb(102, 2, 174) 28%, rgb(210, 5, 210) 100%);
+  padding: 10px 80px;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  text-align: center;
+}
 
-  .movie-button:hover {
-    background: #763beb;
-    
+/* Hover effect */
+.movie-button:hover {
+  background: #541153;
+}
+
+/* ====================== */
+/* 📱 Responsive Movie Button */
+/* ====================== */
+
+@media (max-width: 768px) {
+  .movie-button {
+    padding: 8px 50px;
+    font-size: 0.9rem;
   }
+}
+
+@media (max-width: 480px) {
+  .movie-button {
+    padding: 6px 30px;
+    font-size: 0.85rem;
+  }
+}

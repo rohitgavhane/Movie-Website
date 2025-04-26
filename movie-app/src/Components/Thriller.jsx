@@ -19,7 +19,9 @@ function Thriller() {
 
   return (
     <>
-      <h3 style={{ paddingLeft: "120px", paddingRight: "120px", marginTop: '50px' }}>Thriller Movies</h3>
+ <h3 style={{ padding: '20px', marginTop: '2px', textAlign: 'center', fontSize: '32px' }}>
+  Thriller Movies
+</h3>
       <Container>
         {movies.map((movie, index) => (
           <Wrap key={index}>
@@ -36,18 +38,27 @@ function Thriller() {
   );
 }
 
+// Styled Components
 const Container = styled.div`
   margin-top: 30px;
-padding: 30px 120px 180px;
+  padding: 2px 120px 180px;
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(5, 1fr);
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
+    padding: 30px 50px 100px;
   }
+
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 15px;
   }
 `;
 
@@ -69,13 +80,26 @@ const Wrap = styled.div`
     transition: 0.3s;
   }
 
-  ${'' /* Show info on hover */}
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     z-index: 3;
 
     img {
       filter: blur(0.5px);
+    }
+
+    div {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &:hover {
+      transform: none;
+    }
+
+    img {
+      filter: none;
     }
 
     div {
@@ -110,17 +134,18 @@ const Info = styled.div`
   }
 
   button {
-    padding: 8px 12px;
-    background: #1f80e0;
+    padding: 8px 14px;
+    background: linear-gradient(135deg, #1f80e0, #764ba2);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
-  }
+    transition: background 0.3s ease;
 
-  button:hover {
-    background-color: #0f6bc7;
-  }
+    &:hover {
+      background: linear-gradient(135deg, #0f6bc7, #5e35b1);
+    }
 `;
 
 export default Thriller;

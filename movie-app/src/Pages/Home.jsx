@@ -16,8 +16,12 @@ const Home = () => {
     // Dummy data for now, you can fetch from API later
     const demoMovies = [
       { title: "Watch Now",description: "Action | Sci-Fi | Fantasy", imageUrl: "/images/P1.jpg" },
+            { title: "Watch Now",description: "Action | Sci-Fi | Fantasy", imageUrl: "/images/p6.jpg" },
+
       { title: "Watch Now", description: "Action | Sci-Fi | Fantasy",imageUrl: "/images/p2.jpg" },
-      { title: "Watch Now",description: "Action | Sci-Fi | Fantasy", imageUrl: "/images/p2.jpg" },
+      { title: "Watch Now",description: "Action | Sci-Fi | Fantasy", imageUrl: "/images/p5.jpg" },
+      
+
 
     ];
     setMovies(demoMovies);

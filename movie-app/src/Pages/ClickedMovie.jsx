@@ -5,9 +5,6 @@ import { useParams } from 'react-router-dom';
 import ReviewBtn from '../Components/ReviewBtn';
 import ReviewModal from '../Components/ReviewModel';
 
-
-
-
 function ClickedMovie() {
   const [movie, setMovie] = useState({});
   const { id } = useParams();
@@ -34,10 +31,9 @@ function ClickedMovie() {
         }
       }
     };
-  
+
     if (id) fetchMovie();
   }, [id]);
-  
 
   // Fetch reviews
   const fetchReviews = () => {
@@ -55,7 +51,6 @@ function ClickedMovie() {
     if (id) fetchReviews();
   }, [id]);
 
-
   const handleDeleteReview = async (reviewId) => {
     try {
       await axios.delete(`https://moviewebsite2.onrender.com/reviews/delete/${reviewId}`);
@@ -64,7 +59,6 @@ function ClickedMovie() {
       console.error('Error deleting review:', err);
     }
   };
-  
 
   return (
     <Container>
@@ -73,18 +67,22 @@ function ClickedMovie() {
           <ImageWrapper>
             <img src={movie.poster_url} alt={movie.title} />
           </ImageWrapper>
+
           <MovieDetails>
             <h3>{movie.title}</h3>
             <p>{movie.overview}</p>
-            <p>Action | Sci-Fi | Romance</p>
-            <button className="movie-button">Watch Now</button>
+            <Genre>Action | Sci-Fi | Romance</Genre>
 
-            <ReviewBtn onClick={() => setIsModalOpen(true)} />
+            <ButtonGroup>
+              <WatchButton>Watch Now</WatchButton>
+              <ReviewBtn onClick={() => setIsModalOpen(true)} />
+            </ButtonGroup>
+
             <ReviewModal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
               movieId={id}
-              onReviewAdded={fetchReviews} // Refresh reviews after modal submit
+              onReviewAdded={fetchReviews}
             />
 
             <h4 style={{ marginTop: '30px' }}>User Reviews:</h4>
@@ -93,9 +91,7 @@ function ClickedMovie() {
                 reviews.map((r) => (
                   <ReviewItem key={r._id}>
                     <p>{r.text}</p>
-                    <DeleteButton onClick={() => handleDeleteReview(r._id)}>
-          🗑️ Delete
-        </DeleteButton>
+                    <DeleteButton onClick={() => handleDeleteReview(r._id)}>🗑️ Delete</DeleteButton>
                   </ReviewItem>
                 ))
               ) : (
@@ -111,8 +107,10 @@ function ClickedMovie() {
   );
 }
 
+// Styled Components (Responsive)
+
 const Container = styled.div`
-  padding: 50px 80px;
+  padding: 40px 20px;
   background-color: #0d0d0d;
   color: white;
 `;
@@ -121,8 +119,10 @@ const Content = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 40px;
+  max-width: 1200px;
+  margin: auto;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
   }
@@ -130,6 +130,8 @@ const Content = styled.div`
 
 const ImageWrapper = styled.div`
   flex: 1;
+  display: flex;
+  justify-content: center;
 
   img {
     width: 100%;
@@ -146,44 +148,109 @@ const ImageWrapper = styled.div`
 
 const MovieDetails = styled.div`
   flex: 2;
-  padding-top: 100px;
-  padding-right: 300px;
+  padding-top: 20px;
+  padding-right: 30px;
 
   h3 {
-    font-size: 48px;
-    color: #1f80e0;
-    margin-bottom: 15px;
+    font-size: 40px;
+    color: #AD49E1 ;
+    
+    margin-bottom: 20px;
     text-align: left;
     font-family: Roboto, sans-serif;
+    font-weight: 650;
   }
 
   p {
-    font-size: 16.5px;
+    font-size: 17px;
     line-height: 1.6;
     color: #ccd5ae;
     text-align: justify;
     font-family: "Bungee Spice", sans-serif;
-    padding-right: 120px;
+    margin-bottom: 20px;
   }
+
+  @media (max-width: 900px) {
+    padding-right: 0;
+    text-align: center;
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
+`;
+
+const Genre = styled.p`
+  font-size: 15px;
+  color: #aaa;
+  font-family: Roboto, sans-serif;
+  margin-top: -10px;
+`;
+
+const ButtonGroup = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+const WatchButton = styled.button`
+
+    padding: 12px 65px;
+    background: linear-gradient(135deg, #1f80e0, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, #0f6bc7, #5e35b1);
+    }
+    
 `;
 
 const ReviewList = styled.div`
   margin-top: 20px;
-  padding-right: 250px;
 `;
 
 const ReviewItem = styled.div`
   background-color: #1f1f1f;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 6px;
   border-left: 4px solid #1f80e0;
+
+  p {
+    margin-bottom: 8px;
+    word-break: break-word;
+  }
+`;
+
+const DeleteButton = styled.button`
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #cc0000;
+  }
 `;
 
 const LoadingMessage = styled.p`
   text-align: center;
-  font-size: 20px;
-  margin-top: 100px;
+  font-size: 22px;
+  margin-top: 80px;
   color: #1f80e0;
   animation: fadeIn 1s ease-in;
 
@@ -198,22 +265,5 @@ const LoadingMessage = styled.p`
     }
   }
 `;
-
-const DeleteButton = styled.button`
-  margin-top: 8px;
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    background-color: #cc0000;
-  }
-`;
-
 
 export default ClickedMovie;

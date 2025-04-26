@@ -45,9 +45,10 @@ function Recommends() {
 
   return (
     <>
-      <h3 style={{ paddingLeft: '120px', paddingRight: '120px', marginTop: '50px', textAlign: 'center' }}>
-        Recommended Movies
-      </h3>
+ <h3 style={{ padding: '20px', marginTop: '30px', textAlign: 'center', fontSize: '32px' }}>
+  Recommended Movies
+</h3>
+
       <Container>
         {movies.map((movie, index) => (
           <Wrap key={index}>
@@ -56,7 +57,6 @@ function Recommends() {
               <h3>{movie.title}</h3>
               <p>{movie.overview.slice(0, 100)}...</p>
               <button onClick={() => navigate(`/movie/${movie._id}`)}>Watch Now</button>
-              <button onClick={() => openReviewModal(movie._id)}>Reviews</button>
             </Info>
           </Wrap>
         ))}
@@ -93,10 +93,9 @@ function Recommends() {
 export default Recommends;
 
 // --- Styled Components Below ---
-
 const Container = styled.div`
   margin-top: 30px;
-  padding: 30px 120px 26px;
+padding: 0px 120px 180px;
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(5, 1fr);
@@ -104,11 +103,17 @@ const Container = styled.div`
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
+
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 15px;
   }
 `;
-
 const Wrap = styled.div`
   position: relative;
   border-radius: 10px;
@@ -121,7 +126,7 @@ const Wrap = styled.div`
 
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
     border-radius: 10px;
     transition: 0.3s;
@@ -133,7 +138,7 @@ const Wrap = styled.div`
     bottom: 0;
     background: rgba(0,0,0,0.8);
     width: 100%;
-    padding: 20px;
+    padding: 15px;
     color: white;
     transition: opacity 0.3s ease;
     height: 100%;
@@ -143,37 +148,47 @@ const Wrap = styled.div`
     z-index: 2;
 
     h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
+      font-size: 14px;
+      margin-bottom: 8px;
     }
 
     p {
-      font-size: 13px;
-      margin-bottom: 10px;
+      font-size: 12px;
+      margin-bottom: 8px;
     }
 
-    button {
-      margin-top: 5px;
-      padding: 8px 12px;
-      background: #1f80e0;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+   button {
+    padding: 8px 14px;
+    background: linear-gradient(135deg, #1f80e0, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
 
-      &:hover {
-        background-color: #0f6bc7;
-      }
+    &:hover {
+      background: linear-gradient(135deg, #0f6bc7, #5e35b1);
+    }
     }
   }
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     z-index: 3;
 
     img {
       filter: blur(0.5px);
-      opacity: 2;
+    }
+
+    .info {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &:hover {
+      transform: none;
     }
 
     .info {
@@ -197,6 +212,10 @@ const ReviewBox = styled.div`
   color: white;
   z-index: 999;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 480px) {
+    padding: 15px;
+  }
 `;
 
 const CloseReview = styled.button`

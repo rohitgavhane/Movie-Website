@@ -6,22 +6,25 @@ import { BiSolidCategory } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 
 import Logo from '../assets/Logo.png'; // 🟡 Adjust the path as needed
-
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#151515', borderBottom: '1.8px solid #3C0753' }}>
-      <div className="container-fluid ps-5" style={{ marginLeft: '80px', backgroundColor: '#151515' }}>
-        <NavLink className="navbar-brand me-5" style={{ marginRight: '400px' }} to="/home">
-          <img src={Logo} alt="Logo" style={{ height: '55px' }} /> 
+      <div className="container-fluid px-4" style={{ backgroundColor: '#151515' }}>
+        
+        {/* Logo */}
+        <NavLink className="navbar-brand" to="/home">
+          <img src={Logo} alt="Logo" style={{ height: '50px' }} />
         </NavLink>
 
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        {/* Toggle button for mobile */}
+        <button className="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon" style={{ filter: 'invert(1)' }}></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav d-flex gap-4">
+        {/* Navigation Links */}
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul className="navbar-nav d-flex align-items-center gap-3">
             <li className="nav-item">
               <NavLink
                 className={({ isActive }) =>
@@ -32,6 +35,7 @@ function Navbar() {
                 <GoHomeFill size={20} /> Home
               </NavLink>
             </li>
+
             <li className="nav-item">
               <NavLink
                 className={({ isActive }) =>
@@ -42,6 +46,7 @@ function Navbar() {
                 <MdLocalMovies size={20} /> Movies
               </NavLink>
             </li>
+
             <li className="nav-item">
               <NavLink
                 className={({ isActive }) =>
@@ -52,6 +57,7 @@ function Navbar() {
                 <BiSolidCategory size={20} /> Movie News
               </NavLink>
             </li>
+
             <li className="nav-item">
               <NavLink
                 className={({ isActive }) =>
@@ -59,7 +65,7 @@ function Navbar() {
                 }
                 to="/profile"
               >
-                <FaUserCircle size={20} /> My Space
+                <FaUserCircle size={20} /> Blog
               </NavLink>
             </li>
           </ul>
@@ -68,5 +74,6 @@ function Navbar() {
     </nav>
   );
 }
+
 
 export default Navbar;
