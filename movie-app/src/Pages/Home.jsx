@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 // pages/Home.jsx
 import React, { useEffect, useState } from "react";
-import MovieSlider from "../components/MovieSlider";
+import MovieSlider from "../Components/MovieSlider";
 import Viewvers from "../Components/Viewvers";
 import Recommends from "../Components/Recommends";
 import Thriller from "../Components/Thriller";

@@ -8,9 +8,9 @@ import { FaUserCircle } from "react-icons/fa";
 import Logo from '../assets/Logo.png'; // 🟡 Adjust the path as needed
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#151515', borderBottom: '1.8px solid #3C0753' }}>
-      <div className="container-fluid px-4" style={{ backgroundColor: '#151515' }}>
-        
+    <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#151515', borderBottom: '1.8px solid #3C0753', position: 'relative', 
+      zIndex: 10000 }}>
+<div className="container-fluid px-4" style={{ backgroundColor: '#151515' }}>        
         {/* Logo */}
         <NavLink className="navbar-brand" to="/home">
           <img src={Logo} alt="Logo" style={{ height: '50px' }} />
